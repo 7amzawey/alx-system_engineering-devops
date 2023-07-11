@@ -1,0 +1,4 @@
+#!/bin/bash
+read -p "please enter the file name" file_name
+echo "#!/bin/bash" > $file_name
+vi $file_name
