@@ -1,2 +1,3 @@
 #!/bin/bash
-echo "Everyone is a proponent of strong encryption." | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+encoded=$(tr 'A-Za-z' 'N-ZA-Mn-za-m' <<< "Everyone is a proponent of strong encryption.")
+echo "$encoded"
