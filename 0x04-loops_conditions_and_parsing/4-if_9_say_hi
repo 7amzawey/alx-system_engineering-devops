@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#this script displays Best School 10 times but displays hi on the 9th iteration
+PRINT="Best School"
+for (( i=1; i<=10; i++ ))
+do
+    echo "$PRINT"
+    if [ "$i" -eq 9 ]
+    then
+        echo "hi"
+    fi      
+done
