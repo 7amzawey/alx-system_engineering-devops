@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#this script displays Best School 10 times but displays bad luck.
+COUNTER=1
+while [ $COUNTER -le 20 ]
+do
+    echo "$COUNTER"
+    case $COUNTER in
+	    4)
+		   echo "Bad luck from China"
+		   ;;
+	    9)
+		    echo "Bad luck from Japan"
+		    ;;
+	    17)
+		    echo "Bad luck from Italy"
+		    ;;
+     esac   
+    COUNTER=$(( COUNTER + 1 ))
+done
