@@ -7,7 +7,7 @@ do
     echo "$PRINT"
     if [ "$COUNTER" -eq 9 ]
     then
-        echo "hi"
+        echo "Hi"
     fi
     COUNTER=$(( COUNTER + 1 ))
 done
