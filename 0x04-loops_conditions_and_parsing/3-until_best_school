@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#this bash script will display Best School 10 times.
+PRINT="Best School"
+COUNTER=0
+until [ $COUNTER -ge 10 ]
+do
+	echo "$PRINT"
+    COUNTER=$(( COUNTER + 1 ))
+done
