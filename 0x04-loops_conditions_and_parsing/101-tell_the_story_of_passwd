@@ -2,5 +2,5 @@
 #this file displays the content of the file /etc/passwd
 while IFS=':' read -r USNE PSWRD USRID GID UIDINFO HD CD
 do
-	echo "The user $USNE is part of the $GID gang, lives in $HD and rides $CD. "$USRID"'s place is protected by the passcode $PSWRD, more info about the user here: $UIDINFO"
+	echo "The user $USNE is part of the $GID gang, lives in $HD and rides $CD. $USRID's place is protected by the passcode $PSWRD, more info about the user here: $UIDINFO"
 done < /etc/passwd
