@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# this shows the contents of the directory as similar to ls command
+for file in *; do
+	if [[ $file == *-* ]]; then
+		echo "${file#*-}"
+	fi
+done
