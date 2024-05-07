@@ -3,10 +3,9 @@
 # when recieving a SIGTERM SIGNAL
 handle_sigterm() {
 	echo "I am invincible!!!"
-	exit 0
 }
 trap 'handle_sigterm' SIGTERM
-while [[ True ]]
+while  true
 do
 	echo "To infinity and beyond"
 	sleep 2
