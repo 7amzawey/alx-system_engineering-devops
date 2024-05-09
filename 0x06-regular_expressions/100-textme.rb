@@ -1,2 +1,6 @@
 #!/usr/bin/env ruby
-puts ARGV[0].scan(/(?<=(to:))\+(\d{11})|(\d{11})|(?<=(from:))\w{1,}|\+(\d{11})|(?<=(flags:)).{1,12}\d/)
+log_line = ARGV[0]
+from = log_line[/from:(\w+|\+\d{11})/, 1]
+to = log_line[/to:(\w+|\+\d{11})/, 1]
+flags = log_line[/flags:(.{1,12}\d)/, 1]
+puts [from, to, flags].join(",")
