@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script displays all the listening ports alonw with the PID and the program name
+sudo netstat -ltnp
+sudo netstat -lxnp
