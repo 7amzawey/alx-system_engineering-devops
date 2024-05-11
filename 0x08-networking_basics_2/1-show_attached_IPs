@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
-# this bash script displays the Ip address of the all active IPv4 ips on the
-# machine it's executed on
+# this script shows the ip addresses executing on my terminal
 ifconfig | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
