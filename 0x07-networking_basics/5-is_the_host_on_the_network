@@ -5,7 +5,4 @@ then
 echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
 exit 1
 fi
-for ((i=0; i<5; i++))
-do
-    ping -c 1 "$1"
-done
+   ping -c 5 "$1"
