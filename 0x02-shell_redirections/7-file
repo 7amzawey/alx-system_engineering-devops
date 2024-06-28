@@ -3,4 +3,4 @@ e="\\"
 b='\'
 a='"*"'
 s='"Best School"'
-echo "Best School" > "\$a$e'$s$b'$e*$\?\*\*\*\*\*:)"
+echo -E "Best School" > "\*\\\\'$s\\'\\\\*$\?\*\*\*\*\*:)"
