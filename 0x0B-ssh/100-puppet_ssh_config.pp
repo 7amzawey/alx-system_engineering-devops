@@ -1,14 +1,5 @@
-# Ensure SSH client configuration
-file { '/home/user/.ssh/config':
-  ensure  => present,
-  owner   => 'ubuntu',
-  group   => 'ubuntu',
-  mode    => '0600',
-  content => "
-    Host remote-server
-      HostName 54.161.240.181
-      User ubuntu
-      IdentityFile ~/.ssh/school
-      PasswordAuthentication no
-  ",
-}
+#!/usr/bin/env bash
+# Configures SSH client to use the private key ~/.ssh/school and refuse password authentication
+exec {'ssh_command':
+  command => 'echo "IdentityFile ~/.ssh/school" >> /etc/ssh/ssh_config;
+  echo "PasswordAuthentication no" >> /etc/ssh/ssh_config'}

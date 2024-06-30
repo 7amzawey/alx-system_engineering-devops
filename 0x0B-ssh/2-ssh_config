@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Configures SSH client to use the private key ~/.ssh/school and refuse password authentication
-cat << EOF >> ~/.ssh/config
-Host *
-    IdentityFile ~/.ssh/school
-    PasswordAuthentication no
-EOF
+
+echo "Host *
+  IdentityFile ~/.ssh/school
+  PasswordAuthentication no" > ~/.ssh/config
