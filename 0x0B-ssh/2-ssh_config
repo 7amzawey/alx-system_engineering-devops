@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Configures SSH client to use the private key ~/.ssh/school and refuse password authentication
+# Configures SSH client to use the private key 
+#~/.ssh/school and refuse password authentication
 
 echo "Host *
   IdentityFile ~/.ssh/school
