@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Configures SSH client to use the private key ~/.ssh/school and refuse password authentication
+
+# Check if the SSH directory exists, create it if it doesn't
+[ ! -d ~/.ssh ] && mkdir -p ~/.ssh
+
+# Create or append to the SSH config file
+cat << EOF >> ~/.ssh/config
+Host *
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
+EOF
+
+# Set correct permissions for the SSH config file
+chmod 600 ~/.ssh/config
