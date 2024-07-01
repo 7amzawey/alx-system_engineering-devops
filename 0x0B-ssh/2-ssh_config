@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
-# Configures SSH client to use the private key 
-#~/.ssh/school and refuse password authentication
-
-  echo "IdentityFile ~/.ssh/school" > ~/.ssh/config
-  echo "PasswordAuthentication no"  > ~/.ssh/config
+#!/usr/bin/python3
+cat << EOF >> ~/.ssh/config
+Host *
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
+EOF
