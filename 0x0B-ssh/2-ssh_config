@@ -2,6 +2,5 @@
 # Configures SSH client to use the private key 
 #~/.ssh/school and refuse password authentication
 
-echo "Host *
-  IdentityFile ~/.ssh/school
-  PasswordAuthentication no" > ~/.ssh/config
+  echo "IdentityFile ~/.ssh/school" > ~/.ssh/config
+  echo "PasswordAuthentication no"  > ~/.ssh/config
