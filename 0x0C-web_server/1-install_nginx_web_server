@@ -1,14 +1,10 @@
 #!/usr/bin/env bash
-
 # Install nginx
 apt-get update
 apt-get install -y nginx
 
-# Replace default nginx index.html
 echo "Hello World!" > /usr/share/nginx/html/index.html
 
-# Restart nginx (without systemctl)
 kill -s HUP $(cat /var/run/nginx.pid)
 
-# Exit with success status
 exit 0
