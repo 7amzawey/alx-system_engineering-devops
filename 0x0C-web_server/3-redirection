@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/user/bin/env bash
 # redirect to 301 moved permanently
 
 sudo apt-get update
