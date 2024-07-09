@@ -2,8 +2,9 @@
 # redirect to 301 moved permanently
 
 sudo apt-get update
-
-sudo apt-get install -y nginx
+sudo apt-get install nginx -y
+sudo ufw allow 'Nginx HTTP'
+sudo bash -c 'echo "Hello World!" > /var/www/html/index.html'
 
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.backup
 
@@ -27,4 +28,4 @@ server {
 }
 EOT'
 
-sudo systemctl restart nginx
+sudo service restart nginx
