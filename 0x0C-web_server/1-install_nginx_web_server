@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install Nginx in my server web 01
+# Install Nginx in my remote server
 
 sudo apt-get update
 sudo apt-get install nginx -y

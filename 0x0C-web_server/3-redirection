@@ -1,0 +1,30 @@
+#!/bin/bash
+# redirect to 301 moved permanently
+
+sudo apt-get update
+
+sudo apt-get install -y nginx
+
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.backup
+
+sudo bash -c 'cat > /etc/nginx/sites-available/default <<EOT
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+}
+EOT'
+
+sudo systemctl restart nginx
