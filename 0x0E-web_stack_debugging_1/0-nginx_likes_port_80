@@ -1,3 +1,29 @@
 #!/usr/bin/env bash
 # debugging what is going on with a ubuntu container's Nginx installation
-sudo service nginx start
+
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Create Nginx configuration to listen on port 80
+cat <<EOF > /etc/nginx/sites-available/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOF
+
+# Restart Nginx service to apply changes
+sudo service nginx restart
+
+# Allow HTTP traffic through the firewall
+sudo ufw allow 80/tcp
+sudo ufw reload
