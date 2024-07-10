@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# debugging what is going on with a ubuntu container's Nginx installation
+sudo service nginx start
