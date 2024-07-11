@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# debugging just in 5
+sudo apt-get install -y nginx
+sudo service nginx start
+sudo service nginx stop
