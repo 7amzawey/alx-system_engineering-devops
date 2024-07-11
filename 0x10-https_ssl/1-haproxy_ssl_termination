@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# Variables
+
+DOMAIN="www.hardcorecoding.tech"
+EMAIL="mohamedhamza123467890@gmail.com"
+BACKEND_IP="127.0.0.1"
+BACKEND_PORT="80"
+HAPROXY_CFG="/etc/haproxy/haproxy.cfg"
+
+# Update system and install required packages
+sudo apt-get update
+sudo apt-get install -y certbot haproxy
+
+# Obtain SSL certificate using Certbot
+sudo certbot certonly --standalone -d "${DOMAIN}" --non-interactive --agree-tos -m "${EMAIL}"
+
+# Check if certificate was obtained
+if [ ! -f "/etc/letsencrypt/live/${DOMAIN}/fullchain.pem" ]; then
+    echo "Failed to obtain SSL certificate. Exiting."
+    exit 1
+fi
+
+# Create HAProxy configuration
+sudo tee ${HAPROXY_CFG} > /dev/null <<EOL
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    chroot /var/lib/haproxy
+    user haproxy
+    group haproxy
+    daemon
+    ssl-default-bind-ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA256
+    ssl-default-bind-options no-sslv3
+
+defaults
+    log global
+    mode http
+    option httplog
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend https_front
+    bind *:443 ssl crt /etc/letsencrypt/live/${DOMAIN}/fullchain.pem key /etc/letsencrypt/live/${DOMAIN}/privkey.pem
+    default_backend http_back
+
+backend http_back
+    server web1 ${BACKEND_IP}:${BACKEND_PORT} check
+EOL
+
+# Copy configuration to 1-haproxy_ssl_termination
+sudo cp ${HAPROXY_CFG} /etc/haproxy/1-haproxy_ssl_termination
+
+# Restart HAProxy
+sudo service haproxy restart
+
+# Print completion message
+echo "HAProxy has been configured for SSL termination and is listening on port 443."
