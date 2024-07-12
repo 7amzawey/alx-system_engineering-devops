@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# debugging just in 5
-sudo apt-get install -y nginx
+# debugging what is going on with a ubuntu container's Nginx installation
+
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo service nginx start
-sudo service nginx stop
+kill "$(pgrep 'nginx' | head -1)"
