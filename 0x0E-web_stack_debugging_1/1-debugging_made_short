@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # debugging what is going on with a ubuntu container's Nginx installation
-
 sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo service nginx start
 kill "$(pgrep 'nginx' | head -1)"
