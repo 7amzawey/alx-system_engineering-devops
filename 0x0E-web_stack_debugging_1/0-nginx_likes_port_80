@@ -8,7 +8,6 @@ sudo apt-get install -y nginx
 cat <<EOF > /etc/nginx/sites-available/default
 server {
     listen 80 default_server;
-    listne [::]:80 default_server;
 
     root /var/www/html;
     index index.html index.htm index.nginx-debian.html;
@@ -21,6 +20,7 @@ server {
 }
 EOF
 
-
+sudo ufw allow 80/tcp
+sudo ufw reload
 sudo service nginx restart
 
