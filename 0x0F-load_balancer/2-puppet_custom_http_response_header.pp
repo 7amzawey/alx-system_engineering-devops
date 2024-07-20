@@ -1,27 +1,20 @@
-# Install Nginx
+# 2-puppet_custom_http_response_header.pp
+
+exec { 'update':
+  command => '/usr/bin/apt-get update',
+} ->
+
 package { 'nginx':
-  ensure => installed,
-}
+  ensure => 'present',
+} ->
 
-# Ensure the Nginx service is running and enabled
-service { 'nginx':
-  ensure     => running,
-  enable     => true,
-  require    => Package['nginx'],
-}
+file_line { 'http_header':
+  path  => '/etc/nginx/nginx.conf',
+  line  => 'http {\\n\\tadd_header X-Served-By "$hostname";',
+  match => 'http {',
+} ->
 
-# Ensure the custom header line is present in the Nginx configuration
-file_line { 'add_header':
-  path  => '/etc/nginx/sites-available/default',
-  line  => 'add_header X-Served-By $hostname;',
-  match => 'add_header X-Served-By',
-  notify => Service['nginx'],
-}
-
-# Reload Nginx to apply changes
-exec { 'reload_nginx':
-  command     => '/usr/sbin/nginx -s reload',
-  refreshonly => true,
-  subscribe   => File_line['add_header'],
+exec { 'start_nginx':
+  command => '/usr/sbin/service nginx start',
 }
 
