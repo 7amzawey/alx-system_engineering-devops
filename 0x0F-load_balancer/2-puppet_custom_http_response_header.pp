@@ -6,7 +6,7 @@ package { 'nginx':
 service { 'nignx':
   ensure  => running,
   enable  => true,
-  require => package['nginx'],
+  require => Package['nginx'],
 }
 
 file_line { 'add_header':
