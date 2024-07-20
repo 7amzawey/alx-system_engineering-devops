@@ -15,4 +15,3 @@ backend http_back
     server web02 100.25.177.142:80 check
 EOF'
 sudo service haproxy start
-sudo service haproxy enable
