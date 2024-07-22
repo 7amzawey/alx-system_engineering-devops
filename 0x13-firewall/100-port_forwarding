@@ -30,8 +30,18 @@ server {
 server {
     listen 8080;
     listen [::]:8080;
-
+    
+    root /var/www/html;  # Replace with your web root directory
+    index index.html index.htm index.nginx-debian.html;
+    
+    server_name _;
+    
     location / {
-        return 301 http://$host:80$request_uri;
+        try_files $uri $uri/ =404;
+    }
+    
+    error_page 404 /custom_404.html;
+    location = /custom_404.html {
+        internal;
     }
 }
