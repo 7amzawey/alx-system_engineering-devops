@@ -2,4 +2,5 @@
 # nginx should be running as the user n listens on port 8080
 sed -Ei 's/\s*#?\s*user .*/user nginx;/' /etc/nginx/nginx.conf
 sed -Ei 's/(listen (\[::\]:)?80) /\180 /' /etc/nginx/sites-enabled/default
+pkill apache2
 sudo service nginx restart
