@@ -22,15 +22,15 @@ if __name__ == "__main__":
     todos_response = requests.get(todos_url)
     todos_data = todos_response.json()
     csv_file = f'{employee_id}.csv'
-    with open(csv_file, 'w') as file:
-        writer = csv.writer(file)
+    with open(csv_file, 'w', newline='') as file:
+        writer = csv.writer(file, quoting=csv.QUOTE_ALL)
 
         for task in todos_data:
             writer.writerow(
-                        [str(employee_id),
-                        str(employee_name),
-                        str(task['completed']),
-                        str(task['title'])]
+                    [employee_id,
+                        employee_name,
+                        task['completed'],
+                        task['title']]
                     )
 
     print("data has been written")
