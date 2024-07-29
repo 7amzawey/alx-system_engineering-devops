@@ -27,10 +27,10 @@ if __name__ == "__main__":
 
         for task in todos_data:
             writer.writerow(
-                    [employee_id,
-                        employee_name,
-                        task['completed'],
-                        task['title']]
+                        [str(employee_id),
+                        str(employee_name),
+                        str(task['completed']),
+                        str(task['title'])]
                     )
 
     print("data has been written")
