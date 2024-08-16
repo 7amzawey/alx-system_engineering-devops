@@ -22,6 +22,7 @@ def recurse(subreddit, hot_list=None):
     hot_list.extend(titles)
     after = data.get('after', None)
     if after:
-        next_url = f"https://www.reddit.com/r/{subreddit}/hot.json?after={after}"
-        return recurse(subreddit, hot_list)
+        n_url = f"https://www.reddit.com/r/{subreddit}/hot.json?after={after}"
+        if n_url:
+            return recurse(subreddit, hot_list)
     return hot_list
