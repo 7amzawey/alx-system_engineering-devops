@@ -1,4 +1,5 @@
- #!/usr/bin/env bash
+#!/usr/bin/env bash
+# this file is for backing up my data
 PASSWORD=$1
 mysqldump -u root -p"$PASSWORD" --all-databases > backup.sql
 tar -czvf "$(date +%d-%m-%Y).tar.gz" backup.sql
